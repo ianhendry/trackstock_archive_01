@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="position">
+            <h2><span jhiTranslate="trackstockApp.position.detail.title">Position</span> {{position.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.position.positionTradePlan">Position Trade Plan</span></dt>
+                <dd>
+                    <span>{{position.positionTradePlan}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionOpenDate">Position Open Date</span></dt>
+                <dd>
+                    <span>{{position.positionOpenDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionOpenPrice">Position Open Price</span></dt>
+                <dd>
+                    <span>{{position.positionOpenPrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionCloseDate">Position Close Date</span></dt>
+                <dd>
+                    <span>{{position.positionCloseDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionClosePrice">Position Close Price</span></dt>
+                <dd>
+                    <span>{{position.positionClosePrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positioWinLoss">Positio Win Loss</span></dt>
+                <dd>
+                    <span>{{position.positioWinLoss}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionProfitAmount">Position Profit Amount</span></dt>
+                <dd>
+                    <span>{{position.positionProfitAmount}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.positionClosingThought">Position Closing Thought</span></dt>
+                <dd>
+                    <span>{{position.positionClosingThought}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.position.instrument">Instrument</span></dt>
+                <dd>
+                    <div *ngIf="position.instrument">
+                        <a [routerLink]="['/instrument', position.instrument?.id, 'view']">{{position.instrument?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/position', position.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

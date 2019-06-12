@@ -1,0 +1,27 @@
+{
+  "trackstockApp": {
+    "tradingAccount": {
+      "home": {
+        "title": "Trading Accounts",
+        "createLabel": "Create a new Trading Account",
+        "createOrEditLabel": "Create or edit a Trading Account"
+      },
+      "created": "A new Trading Account is created with identifier {{ param }}",
+      "updated": "A Trading Account is updated with identifier {{ param }}",
+      "deleted": "A Trading Account is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Trading Account {{ id }}?"
+      },
+      "detail": {
+        "title": "Trading Account"
+      },
+      "accountName": "Account Name",
+      "accountReal": "Account Real",
+      "accountOpenDate": "Account Open Date",
+      "accountBalance": "Account Balance",
+      "accountCloseDate": "Account Close Date",
+      "position": "Position",
+      "user": "User"
+    }
+  }
+}

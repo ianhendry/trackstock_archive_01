@@ -1,0 +1,30 @@
+{
+  "trackstockApp": {
+    "position": {
+      "home": {
+        "title": "Positions",
+        "createLabel": "Créer un nouveau Position",
+        "createOrEditLabel": "Créer ou éditer un Position"
+      },
+      "created": "Un nouveau Position a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Position avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Position avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Position {{ id }} ?"
+      },
+      "detail": {
+        "title": "Position"
+      },
+      "positionTradePlan": "Position Trade Plan",
+      "positionOpenDate": "Position Open Date",
+      "positionOpenPrice": "Position Open Price",
+      "positionCloseDate": "Position Close Date",
+      "positionClosePrice": "Position Close Price",
+      "positioWinLoss": "Positio Win Loss",
+      "positionProfitAmount": "Position Profit Amount",
+      "positionClosingThought": "Position Closing Thought",
+      "instrument": "Instrument",
+      "tradingAccount": "Trading Account"
+    }
+  }
+}

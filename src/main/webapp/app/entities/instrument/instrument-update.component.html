@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-instrument-heading" jhiTranslate="trackstockApp.instrument.home.createOrEditLabel">Create or edit a Instrument</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!instrument.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.dataProvider" for="field_dataProvider">Data Provider</label>
+                    <select class="form-control" name="dataProvider" formControlName="dataProvider" id="field_dataProvider">
+                        <option value="FXPRO">{{'trackstockApp.FinancialDataSources.FXPRO' | translate}}</option>
+                        <option value="QUANDLL">{{'trackstockApp.FinancialDataSources.QUANDLL' | translate}}</option>
+                        <option value="TRADENAVIGATOR">{{'trackstockApp.FinancialDataSources.TRADENAVIGATOR' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.instrumentTicker" for="field_instrumentTicker">Instrument Ticker</label>
+                    <input type="text" class="form-control" name="instrumentTicker" id="field_instrumentTicker"
+                           formControlName="instrumentTicker"/>
+                    <div *ngIf="editForm.get('instrumentTicker').invalid && (editForm.get('instrumentTicker').dirty || editForm.get('instrumentTicker').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('instrumentTicker').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.instrumentExchnage" for="field_instrumentExchnage">Instrument Exchnage</label>
+                    <input type="text" class="form-control" name="instrumentExchnage" id="field_instrumentExchnage"
+                           formControlName="instrumentExchnage"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.instrumentDescription" for="field_instrumentDescription">Instrument Description</label>
+                    <input type="text" class="form-control" name="instrumentDescription" id="field_instrumentDescription"
+                           formControlName="instrumentDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.instrumentDataFrom" for="field_instrumentDataFrom">Instrument Data From</label>
+                    <input type="text" class="form-control" name="instrumentDataFrom" id="field_instrumentDataFrom"
+                           formControlName="instrumentDataFrom"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.instrumentActive" for="field_instrumentActive">Instrument Active</label>
+                    <input type="checkbox" class="form-control" name="instrumentActive" id="field_instrumentActive"
+                           formControlName="instrumentActive"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker  #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.instrument.dateInactive" for="field_dateInactive">Date Inactive</label>
+                    <div class="input-group">
+                        <input id="field_dateInactive" type="text" class="form-control" name="dateInactive" ngbDatepicker  #dateInactiveDp="ngbDatepicker" formControlName="dateInactive"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateInactiveDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

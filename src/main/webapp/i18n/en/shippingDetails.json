@@ -1,0 +1,32 @@
+{
+  "trackstockApp": {
+    "shippingDetails": {
+      "home": {
+        "title": "Shipping Details",
+        "createLabel": "Create a new Shipping Details",
+        "createOrEditLabel": "Create or edit a Shipping Details"
+      },
+      "created": "A new Shipping Details is created with identifier {{ param }}",
+      "updated": "A Shipping Details is updated with identifier {{ param }}",
+      "deleted": "A Shipping Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Shipping Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Shipping Details"
+      },
+      "userName": "User Name",
+      "email": "Email",
+      "name": "Name",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "address3": "Address 3",
+      "address4": "Address 4",
+      "address5": "Address 5",
+      "dateAdded": "Date Added",
+      "dateInactive": "Date Inactive",
+      "userPicture": "User Picture",
+      "user": "User"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.jugglerapps.stocktrack",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "trackstock",
+    "packageName": "com.jugglerapps.stocktrack",
+    "packageFolder": "com/jugglerapps/stocktrack",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NGU1NzAzZGZjZWJlNTQzNGVjYTk5YjljMmJmNDVmZjgwODI1Y2MzMWYyMTIxYmFhNzJiMzc0ZmE1MWM5ODQ3ODMwOTZmZDc3M2IzNzE0YmRmMGZjMzUyYjY0NDM0YTE2OTc4ZDFjZDk1ZGU1ZWI2ZTI5NzEzNmE1ZjEzMjVjNjA=",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "zh-cn", "fr"]
+  }
+}

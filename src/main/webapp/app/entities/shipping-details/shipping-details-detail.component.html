@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="shippingDetails">
+            <h2><span jhiTranslate="trackstockApp.shippingDetails.detail.title">Shipping Details</span> {{shippingDetails.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.userName">User Name</span></dt>
+                <dd>
+                    <span>{{shippingDetails.userName}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.email">Email</span></dt>
+                <dd>
+                    <span>{{shippingDetails.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.name">Name</span></dt>
+                <dd>
+                    <span>{{shippingDetails.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.address1">Address 1</span></dt>
+                <dd>
+                    <span>{{shippingDetails.address1}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.address2">Address 2</span></dt>
+                <dd>
+                    <span>{{shippingDetails.address2}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.address3">Address 3</span></dt>
+                <dd>
+                    <span>{{shippingDetails.address3}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.address4">Address 4</span></dt>
+                <dd>
+                    <span>{{shippingDetails.address4}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.address5">Address 5</span></dt>
+                <dd>
+                    <span>{{shippingDetails.address5}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{shippingDetails.dateAdded}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.dateInactive">Date Inactive</span></dt>
+                <dd>
+                    <span>{{shippingDetails.dateInactive}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.userPicture">User Picture</span></dt>
+                <dd>
+                    <div *ngIf="shippingDetails.userPicture">
+                        <a (click)="openFile(shippingDetails.userPictureContentType, shippingDetails.userPicture)">
+                            <img [src]="'data:' + shippingDetails.userPictureContentType + ';base64,' + shippingDetails.userPicture" style="max-width: 100%;" alt="shippingDetails image"/>
+                        </a>
+                        {{shippingDetails.userPictureContentType}}, {{byteSize(shippingDetails.userPicture)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.shippingDetails.user">User</span></dt>
+                <dd>
+                    {{shippingDetails.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/shipping-details', shippingDetails.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

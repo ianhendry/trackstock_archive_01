@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="instrument">
+            <h2><span jhiTranslate="trackstockApp.instrument.detail.title">Instrument</span> {{instrument.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.instrument.dataProvider">Data Provider</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'trackstockApp.FinancialDataSources.' + instrument.dataProvider}}">{{instrument.dataProvider}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.instrumentTicker">Instrument Ticker</span></dt>
+                <dd>
+                    <span>{{instrument.instrumentTicker}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.instrumentExchnage">Instrument Exchnage</span></dt>
+                <dd>
+                    <span>{{instrument.instrumentExchnage}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.instrumentDescription">Instrument Description</span></dt>
+                <dd>
+                    <span>{{instrument.instrumentDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.instrumentDataFrom">Instrument Data From</span></dt>
+                <dd>
+                    <span>{{instrument.instrumentDataFrom}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.instrumentActive">Instrument Active</span></dt>
+                <dd>
+                    <span>{{instrument.instrumentActive}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{instrument.dateAdded}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.instrument.dateInactive">Date Inactive</span></dt>
+                <dd>
+                    <span>{{instrument.dateInactive}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/instrument', instrument.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

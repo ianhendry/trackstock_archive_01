@@ -1,0 +1,32 @@
+{
+  "trackstockApp": {
+    "shippingDetails": {
+      "home": {
+        "title": "Shipping Details",
+        "createLabel": "创建新 Shipping Details",
+        "createOrEditLabel": "创建或编辑 Shipping Details"
+      },
+      "created": "Shipping Details {{ param }} 创建成功",
+      "updated": "Shipping Details {{ param }} 更新成功",
+      "deleted": "Shipping Details {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Shipping Details {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Shipping Details"
+      },
+      "userName": "User Name",
+      "email": "Email",
+      "name": "Name",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "address3": "Address 3",
+      "address4": "Address 4",
+      "address5": "Address 5",
+      "dateAdded": "Date Added",
+      "dateInactive": "Date Inactive",
+      "userPicture": "User Picture",
+      "user": "User"
+    }
+  }
+}

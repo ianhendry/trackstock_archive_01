@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="videoPost">
+            <h2><span jhiTranslate="trackstockApp.videoPost.detail.title">Video Post</span> {{videoPost.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.videoPost.postTitle">Post Title</span></dt>
+                <dd>
+                    <span>{{videoPost.postTitle}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.videoPost.postBody">Post Body</span></dt>
+                <dd>
+                    <span>{{videoPost.postBody}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.videoPost.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{videoPost.dateAdded}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.videoPost.dateApproved">Date Approved</span></dt>
+                <dd>
+                    <span>{{videoPost.dateApproved}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.videoPost.media1">Media 1</span></dt>
+                <dd>
+                    <div *ngIf="videoPost.media1">
+                        <a (click)="openFile(videoPost.media1ContentType, videoPost.media1)" jhiTranslate="entity.action.open">open</a>
+                        {{videoPost.media1ContentType}}, {{byteSize(videoPost.media1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.videoPost.user">User</span></dt>
+                <dd>
+                    {{videoPost.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/video-post', videoPost.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

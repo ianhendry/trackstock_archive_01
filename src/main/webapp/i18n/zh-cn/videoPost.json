@@ -1,0 +1,26 @@
+{
+  "trackstockApp": {
+    "videoPost": {
+      "home": {
+        "title": "Video Posts",
+        "createLabel": "创建新 Video Post",
+        "createOrEditLabel": "创建或编辑 Video Post"
+      },
+      "created": "Video Post {{ param }} 创建成功",
+      "updated": "Video Post {{ param }} 更新成功",
+      "deleted": "Video Post {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Video Post {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Video Post"
+      },
+      "postTitle": "Post Title",
+      "postBody": "Post Body",
+      "dateAdded": "Date Added",
+      "dateApproved": "Date Approved",
+      "media1": "Media 1",
+      "user": "User"
+    }
+  }
+}

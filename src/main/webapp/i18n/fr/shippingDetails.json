@@ -1,0 +1,32 @@
+{
+  "trackstockApp": {
+    "shippingDetails": {
+      "home": {
+        "title": "ShippingDetails",
+        "createLabel": "Créer un nouveau Shipping Details",
+        "createOrEditLabel": "Créer ou éditer un Shipping Details"
+      },
+      "created": "Un nouveau Shipping Details a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Shipping Details avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Shipping Details avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Shipping Details {{ id }} ?"
+      },
+      "detail": {
+        "title": "Shipping Details"
+      },
+      "userName": "User Name",
+      "email": "Email",
+      "name": "Name",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "address3": "Address 3",
+      "address4": "Address 4",
+      "address5": "Address 5",
+      "dateAdded": "Date Added",
+      "dateInactive": "Date Inactive",
+      "userPicture": "User Picture",
+      "user": "User"
+    }
+  }
+}

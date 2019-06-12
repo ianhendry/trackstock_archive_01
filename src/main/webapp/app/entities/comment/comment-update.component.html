@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-comment-heading" jhiTranslate="trackstockApp.comment.home.createOrEditLabel">Create or edit a Comment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!comment.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.commentTitle" for="field_commentTitle">Comment Title</label>
+                    <input type="text" class="form-control" name="commentTitle" id="field_commentTitle"
+                           formControlName="commentTitle"/>
+                    <div *ngIf="editForm.get('commentTitle').invalid && (editForm.get('commentTitle').dirty || editForm.get('commentTitle').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('commentTitle').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.commentBody" for="field_commentBody">Comment Body</label>
+                    <input type="text" class="form-control" name="commentBody" id="field_commentBody"
+                           formControlName="commentBody"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.commentMedia" for="field_commentMedia">Comment Media</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('commentMediaContentType').value + ';base64,' + editForm.get('commentMedia').value" style="max-height: 100px;" *ngIf="editForm.get('commentMedia').value" alt="comment image"/>
+                        <div *ngIf="editForm.get('commentMedia').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('commentMediaContentType').value}}, {{byteSize(editForm.get('commentMedia').value)}}</span>
+                            <button type="button" (click)="clearInputImage('commentMedia', 'commentMediaContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_commentMedia" (change)="setFileData($event, 'commentMedia', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="commentMedia" id="field_commentMedia"
+                           formControlName="commentMedia"/>
+                    <input type="hidden" class="form-control" name="commentMediaContentType" id="field_commentMediaContentType"
+                           formControlName="commentMediaContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker  #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateAdded').invalid && (editForm.get('dateAdded').dirty || editForm.get('dateAdded').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateAdded').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.dateApproved" for="field_dateApproved">Date Approved</label>
+                    <div class="input-group">
+                        <input id="field_dateApproved" type="text" class="form-control" name="dateApproved" ngbDatepicker  #dateApprovedDp="ngbDatepicker" formControlName="dateApproved"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateApprovedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.reply" for="field_reply">Reply</label>
+                    <select class="form-control" id="field_reply" name="reply" formControlName="reply">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="commentOption.id === editForm.get('reply').value?.id ? editForm.get('reply').value : commentOption" *ngFor="let commentOption of replies; trackBy: trackCommentById">{{commentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.comment.watchlist" for="field_watchlist">Watchlist</label>
+                    <select class="form-control" id="field_watchlist" name="watchlist" formControlName="watchlist">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="watchlistOption.id === editForm.get('watchlist').value?.id ? editForm.get('watchlist').value : watchlistOption" *ngFor="let watchlistOption of watchlists; trackBy: trackWatchlistById">{{watchlistOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

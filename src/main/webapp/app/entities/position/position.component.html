@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.position.home.title">Positions</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-position" [routerLink]="['/position/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.position.home.createLabel">
+            Create new Position
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="positions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionTradePlan"><span jhiTranslate="trackstockApp.position.positionTradePlan">Position Trade Plan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionOpenDate"><span jhiTranslate="trackstockApp.position.positionOpenDate">Position Open Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionOpenPrice"><span jhiTranslate="trackstockApp.position.positionOpenPrice">Position Open Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionCloseDate"><span jhiTranslate="trackstockApp.position.positionCloseDate">Position Close Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionClosePrice"><span jhiTranslate="trackstockApp.position.positionClosePrice">Position Close Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positioWinLoss"><span jhiTranslate="trackstockApp.position.positioWinLoss">Positio Win Loss</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionProfitAmount"><span jhiTranslate="trackstockApp.position.positionProfitAmount">Position Profit Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="positionClosingThought"><span jhiTranslate="trackstockApp.position.positionClosingThought">Position Closing Thought</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrument.id"><span jhiTranslate="trackstockApp.position.instrument">Instrument</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let position of positions ;trackBy: trackId">
+                <td><a [routerLink]="['/position', position.id, 'view' ]">{{position.id}}</a></td>
+                <td>{{position.positionTradePlan}}</td>
+                <td>{{position.positionOpenDate | date:'mediumDate'}}</td>
+                <td>{{position.positionOpenPrice}}</td>
+                <td>{{position.positionCloseDate | date:'mediumDate'}}</td>
+                <td>{{position.positionClosePrice}}</td>
+                <td>{{position.positioWinLoss}}</td>
+                <td>{{position.positionProfitAmount}}</td>
+                <td>{{position.positionClosingThought}}</td>
+                <td>
+                    <div *ngIf="position.instrument">
+                        <a [routerLink]="['../instrument', position.instrument?.id, 'view' ]" >{{position.instrument?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/position', position.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/position', position.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'position', { outlets: { popup: position.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="positions && positions.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

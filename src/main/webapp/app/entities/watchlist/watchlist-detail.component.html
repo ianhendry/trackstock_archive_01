@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="watchlist">
+            <h2><span jhiTranslate="trackstockApp.watchlist.detail.title">Watchlist</span> {{watchlist.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.watchlist.watchlistName">Watchlist Name</span></dt>
+                <dd>
+                    <span>{{watchlist.watchlistName}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.watchlist.watchlistDescription">Watchlist Description</span></dt>
+                <dd>
+                    <span>{{watchlist.watchlistDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.watchlist.dateCreated">Date Created</span></dt>
+                <dd>
+                    <span>{{watchlist.dateCreated}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.watchlist.dateInactive">Date Inactive</span></dt>
+                <dd>
+                    <span>{{watchlist.dateInactive}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.watchlist.watchlistInactive">Watchlist Inactive</span></dt>
+                <dd>
+                    <span>{{watchlist.watchlistInactive}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.watchlist.instrument">Instrument</span></dt>
+                <dd>
+                    <span *ngFor="let instrument of watchlist.instruments; let last = last">
+                        <a [routerLink]="['/instrument', instrument?.id, 'view' ]">{{instrument.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/watchlist', watchlist.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

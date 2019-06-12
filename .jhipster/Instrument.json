@@ -1,0 +1,74 @@
+{
+    "name": "Instrument",
+    "fields": [
+        {
+            "fieldName": "dataProvider",
+            "fieldType": "FinancialDataSources",
+            "fieldValues": "FXPRO,QUANDLL,TRADENAVIGATOR"
+        },
+        {
+            "fieldName": "instrumentTicker",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "instrumentExchnage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "instrumentDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "instrumentDataFrom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "instrumentActive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dateAdded",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateInactive",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "position",
+            "otherEntityRelationshipName": "instrument",
+            "relationshipName": "position",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "post",
+            "otherEntityRelationshipName": "instrument",
+            "relationshipName": "post",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "watchlist",
+            "otherEntityRelationshipName": "instrument",
+            "relationshipName": "watchlist",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190606124924",
+    "entityTableName": "instrument",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

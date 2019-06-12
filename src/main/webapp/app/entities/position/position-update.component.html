@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-position-heading" jhiTranslate="trackstockApp.position.home.createOrEditLabel">Create or edit a Position</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!position.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionTradePlan" for="field_positionTradePlan">Position Trade Plan</label>
+                    <input type="text" class="form-control" name="positionTradePlan" id="field_positionTradePlan"
+                           formControlName="positionTradePlan"/>
+                    <div *ngIf="editForm.get('positionTradePlan').invalid && (editForm.get('positionTradePlan').dirty || editForm.get('positionTradePlan').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('positionTradePlan').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionOpenDate" for="field_positionOpenDate">Position Open Date</label>
+                    <div class="input-group">
+                        <input id="field_positionOpenDate" type="text" class="form-control" name="positionOpenDate" ngbDatepicker  #positionOpenDateDp="ngbDatepicker" formControlName="positionOpenDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="positionOpenDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('positionOpenDate').invalid && (editForm.get('positionOpenDate').dirty || editForm.get('positionOpenDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('positionOpenDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionOpenPrice" for="field_positionOpenPrice">Position Open Price</label>
+                    <input type="number" class="form-control" name="positionOpenPrice" id="field_positionOpenPrice"
+                           formControlName="positionOpenPrice"/>
+                    <div *ngIf="editForm.get('positionOpenPrice').invalid && (editForm.get('positionOpenPrice').dirty || editForm.get('positionOpenPrice').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('positionOpenPrice').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('positionOpenPrice')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionCloseDate" for="field_positionCloseDate">Position Close Date</label>
+                    <div class="input-group">
+                        <input id="field_positionCloseDate" type="text" class="form-control" name="positionCloseDate" ngbDatepicker  #positionCloseDateDp="ngbDatepicker" formControlName="positionCloseDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="positionCloseDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionClosePrice" for="field_positionClosePrice">Position Close Price</label>
+                    <input type="number" class="form-control" name="positionClosePrice" id="field_positionClosePrice"
+                           formControlName="positionClosePrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positioWinLoss" for="field_positioWinLoss">Positio Win Loss</label>
+                    <input type="checkbox" class="form-control" name="positioWinLoss" id="field_positioWinLoss"
+                           formControlName="positioWinLoss"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionProfitAmount" for="field_positionProfitAmount">Position Profit Amount</label>
+                    <input type="number" class="form-control" name="positionProfitAmount" id="field_positionProfitAmount"
+                           formControlName="positionProfitAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.positionClosingThought" for="field_positionClosingThought">Position Closing Thought</label>
+                    <input type="text" class="form-control" name="positionClosingThought" id="field_positionClosingThought"
+                           formControlName="positionClosingThought"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.instrument" for="field_instrument">Instrument</label>
+                    <select class="form-control" id="field_instrument" name="instrument" formControlName="instrument">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="instrumentOption.id === editForm.get('instrument').value?.id ? editForm.get('instrument').value : instrumentOption" *ngFor="let instrumentOption of instruments; trackBy: trackInstrumentById">{{instrumentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

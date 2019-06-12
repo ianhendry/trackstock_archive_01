@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.videoPost.home.title">Video Posts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-video-post" [routerLink]="['/video-post/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.videoPost.home.createLabel">
+            Create new Video Post
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="videoPosts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postTitle"><span jhiTranslate="trackstockApp.videoPost.postTitle">Post Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postBody"><span jhiTranslate="trackstockApp.videoPost.postBody">Post Body</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAdded"><span jhiTranslate="trackstockApp.videoPost.dateAdded">Date Added</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateApproved"><span jhiTranslate="trackstockApp.videoPost.dateApproved">Date Approved</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="media1"><span jhiTranslate="trackstockApp.videoPost.media1">Media 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="trackstockApp.videoPost.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let videoPost of videoPosts ;trackBy: trackId">
+                <td><a [routerLink]="['/video-post', videoPost.id, 'view' ]">{{videoPost.id}}</a></td>
+                <td>{{videoPost.postTitle}}</td>
+                <td>{{videoPost.postBody}}</td>
+                <td>{{videoPost.dateAdded | date:'mediumDate'}}</td>
+                <td>{{videoPost.dateApproved | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="videoPost.media1" (click)="openFile(videoPost.media1ContentType, videoPost.media1)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="videoPost.media1">{{videoPost.media1ContentType}}, {{byteSize(videoPost.media1)}}</span>
+                </td>
+                <td>
+                    {{videoPost.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/video-post', videoPost.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/video-post', videoPost.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'video-post', { outlets: { popup: videoPost.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

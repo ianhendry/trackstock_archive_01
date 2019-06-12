@@ -1,0 +1,153 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-post-heading" jhiTranslate="trackstockApp.post.home.createOrEditLabel">Create or edit a Post</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!post.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.postTitle" for="field_postTitle">Post Title</label>
+                    <input type="text" class="form-control" name="postTitle" id="field_postTitle"
+                           formControlName="postTitle"/>
+                    <div *ngIf="editForm.get('postTitle').invalid && (editForm.get('postTitle').dirty || editForm.get('postTitle').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postTitle').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.postBody" for="field_postBody">Post Body</label>
+                    <input type="text" class="form-control" name="postBody" id="field_postBody"
+                           formControlName="postBody"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker  #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateAdded').invalid && (editForm.get('dateAdded').dirty || editForm.get('dateAdded').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateAdded').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.dateApproved" for="field_dateApproved">Date Approved</label>
+                    <div class="input-group">
+                        <input id="field_dateApproved" type="text" class="form-control" name="dateApproved" ngbDatepicker  #dateApprovedDp="ngbDatepicker" formControlName="dateApproved"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateApprovedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.media1" for="field_media1">Media 1</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('media1ContentType').value + ';base64,' + editForm.get('media1').value" style="max-height: 100px;" *ngIf="editForm.get('media1').value" alt="post image"/>
+                        <div *ngIf="editForm.get('media1').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('media1ContentType').value}}, {{byteSize(editForm.get('media1').value)}}</span>
+                            <button type="button" (click)="clearInputImage('media1', 'media1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_media1" (change)="setFileData($event, 'media1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="media1" id="field_media1"
+                           formControlName="media1"/>
+                    <input type="hidden" class="form-control" name="media1ContentType" id="field_media1ContentType"
+                           formControlName="media1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.media2" for="field_media2">Media 2</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('media2ContentType').value + ';base64,' + editForm.get('media2').value" style="max-height: 100px;" *ngIf="editForm.get('media2').value" alt="post image"/>
+                        <div *ngIf="editForm.get('media2').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('media2ContentType').value}}, {{byteSize(editForm.get('media2').value)}}</span>
+                            <button type="button" (click)="clearInputImage('media2', 'media2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_media2" (change)="setFileData($event, 'media2', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="media2" id="field_media2"
+                           formControlName="media2"/>
+                    <input type="hidden" class="form-control" name="media2ContentType" id="field_media2ContentType"
+                           formControlName="media2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.media3" for="field_media3">Media 3</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('media3ContentType').value + ';base64,' + editForm.get('media3').value" style="max-height: 100px;" *ngIf="editForm.get('media3').value" alt="post image"/>
+                        <div *ngIf="editForm.get('media3').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('media3ContentType').value}}, {{byteSize(editForm.get('media3').value)}}</span>
+                            <button type="button" (click)="clearInputImage('media3', 'media3ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_media3" (change)="setFileData($event, 'media3', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="media3" id="field_media3"
+                           formControlName="media3"/>
+                    <input type="hidden" class="form-control" name="media3ContentType" id="field_media3ContentType"
+                           formControlName="media3ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.media4" for="field_media4">Media 4</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('media4ContentType').value + ';base64,' + editForm.get('media4').value" style="max-height: 100px;" *ngIf="editForm.get('media4').value" alt="post image"/>
+                        <div *ngIf="editForm.get('media4').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('media4ContentType').value}}, {{byteSize(editForm.get('media4').value)}}</span>
+                            <button type="button" (click)="clearInputImage('media4', 'media4ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_media4" (change)="setFileData($event, 'media4', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="media4" id="field_media4"
+                           formControlName="media4"/>
+                    <input type="hidden" class="form-control" name="media4ContentType" id="field_media4ContentType"
+                           formControlName="media4ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.instrument" for="field_instrument">Instrument</label>
+                    <select class="form-control" id="field_instrument" name="instrument" formControlName="instrument">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="instrumentOption.id === editForm.get('instrument').value?.id ? editForm.get('instrument').value : instrumentOption" *ngFor="let instrumentOption of instruments; trackBy: trackInstrumentById">{{instrumentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.comment" for="field_comment">Comment</label>
+                    <select class="form-control" id="field_comment" name="comment" formControlName="comment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="commentOption.id === editForm.get('comment').value?.id ? editForm.get('comment').value : commentOption" *ngFor="let commentOption of comments; trackBy: trackCommentById">{{commentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.post.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

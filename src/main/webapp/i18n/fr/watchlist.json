@@ -1,0 +1,27 @@
+{
+  "trackstockApp": {
+    "watchlist": {
+      "home": {
+        "title": "Watchlists",
+        "createLabel": "Créer un nouveau Watchlist",
+        "createOrEditLabel": "Créer ou éditer un Watchlist"
+      },
+      "created": "Un nouveau Watchlist a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Watchlist avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Watchlist avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Watchlist {{ id }} ?"
+      },
+      "detail": {
+        "title": "Watchlist"
+      },
+      "watchlistName": "Watchlist Name",
+      "watchlistDescription": "Watchlist Description",
+      "dateCreated": "Date Created",
+      "dateInactive": "Date Inactive",
+      "watchlistInactive": "Watchlist Inactive",
+      "comment": "Comment",
+      "instrument": "Instrument"
+    }
+  }
+}

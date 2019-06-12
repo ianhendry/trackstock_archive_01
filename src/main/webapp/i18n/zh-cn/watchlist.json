@@ -1,0 +1,27 @@
+{
+  "trackstockApp": {
+    "watchlist": {
+      "home": {
+        "title": "Watchlists",
+        "createLabel": "创建新 Watchlist",
+        "createOrEditLabel": "创建或编辑 Watchlist"
+      },
+      "created": "Watchlist {{ param }} 创建成功",
+      "updated": "Watchlist {{ param }} 更新成功",
+      "deleted": "Watchlist {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Watchlist {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Watchlist"
+      },
+      "watchlistName": "Watchlist Name",
+      "watchlistDescription": "Watchlist Description",
+      "dateCreated": "Date Created",
+      "dateInactive": "Date Inactive",
+      "watchlistInactive": "Watchlist Inactive",
+      "comment": "Comment",
+      "instrument": "Instrument"
+    }
+  }
+}

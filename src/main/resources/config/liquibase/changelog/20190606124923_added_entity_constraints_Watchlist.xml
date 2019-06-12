@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Watchlist.
+    -->
+    <changeSet id="20190606124923-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="watchlist_id"
+                                 baseTableName="watchlist_instrument"
+                                 constraintName="fk_watchlist_instrument_watchlist_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="watchlist"/>
+
+        <addForeignKeyConstraint baseColumnNames="instrument_id"
+                                 baseTableName="watchlist_instrument"
+                                 constraintName="fk_watchlist_instrument_instrument_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instrument"/>
+        
+    </changeSet>
+</databaseChangeLog>

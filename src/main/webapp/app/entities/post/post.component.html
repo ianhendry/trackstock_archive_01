@@ -1,0 +1,104 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.post.home.title">Posts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-post" [routerLink]="['/post/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.post.home.createLabel">
+            Create new Post
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="posts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postTitle"><span jhiTranslate="trackstockApp.post.postTitle">Post Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postBody"><span jhiTranslate="trackstockApp.post.postBody">Post Body</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAdded"><span jhiTranslate="trackstockApp.post.dateAdded">Date Added</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateApproved"><span jhiTranslate="trackstockApp.post.dateApproved">Date Approved</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="media1"><span jhiTranslate="trackstockApp.post.media1">Media 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="media2"><span jhiTranslate="trackstockApp.post.media2">Media 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="media3"><span jhiTranslate="trackstockApp.post.media3">Media 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="media4"><span jhiTranslate="trackstockApp.post.media4">Media 4</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrument.id"><span jhiTranslate="trackstockApp.post.instrument">Instrument</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="comment.id"><span jhiTranslate="trackstockApp.post.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="trackstockApp.post.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let post of posts ;trackBy: trackId">
+                <td><a [routerLink]="['/post', post.id, 'view' ]">{{post.id}}</a></td>
+                <td>{{post.postTitle}}</td>
+                <td>{{post.postBody}}</td>
+                <td>{{post.dateAdded | date:'mediumDate'}}</td>
+                <td>{{post.dateApproved | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="post.media1" (click)="openFile(post.media1ContentType, post.media1)">
+                        <img [src]="'data:' + post.media1ContentType + ';base64,' + post.media1" style="max-height: 30px;" alt="post image"/>
+                    </a>
+                    <span *ngIf="post.media1">{{post.media1ContentType}}, {{byteSize(post.media1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="post.media2" (click)="openFile(post.media2ContentType, post.media2)">
+                        <img [src]="'data:' + post.media2ContentType + ';base64,' + post.media2" style="max-height: 30px;" alt="post image"/>
+                    </a>
+                    <span *ngIf="post.media2">{{post.media2ContentType}}, {{byteSize(post.media2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="post.media3" (click)="openFile(post.media3ContentType, post.media3)">
+                        <img [src]="'data:' + post.media3ContentType + ';base64,' + post.media3" style="max-height: 30px;" alt="post image"/>
+                    </a>
+                    <span *ngIf="post.media3">{{post.media3ContentType}}, {{byteSize(post.media3)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="post.media4" (click)="openFile(post.media4ContentType, post.media4)">
+                        <img [src]="'data:' + post.media4ContentType + ';base64,' + post.media4" style="max-height: 30px;" alt="post image"/>
+                    </a>
+                    <span *ngIf="post.media4">{{post.media4ContentType}}, {{byteSize(post.media4)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="post.instrument">
+                        <a [routerLink]="['../instrument', post.instrument?.id, 'view' ]" >{{post.instrument?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="post.comment">
+                        <a [routerLink]="['../comment', post.comment?.id, 'view' ]" >{{post.comment?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{post.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/post', post.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/post', post.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'post', { outlets: { popup: post.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

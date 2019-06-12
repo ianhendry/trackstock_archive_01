@@ -1,0 +1,10 @@
+{
+  "trackstockApp": {
+    "FinancialDataSources": {
+      "null": "",
+      "FXPRO": "FXPRO",
+      "QUANDLL": "QUANDLL",
+      "TRADENAVIGATOR": "TRADENAVIGATOR"
+    }
+  }
+}

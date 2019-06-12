@@ -1,0 +1,73 @@
+{
+    "name": "Comment",
+    "fields": [
+        {
+            "fieldName": "commentTitle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "commentBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "commentMedia",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "dateAdded",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateApproved",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "comment",
+            "otherEntityRelationshipName": "comment",
+            "relationshipName": "reply",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "comment",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "post",
+            "otherEntityRelationshipName": "comment",
+            "relationshipName": "post",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "watchlist",
+            "otherEntityRelationshipName": "comment",
+            "relationshipName": "watchlist",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190606124922",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "comment",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

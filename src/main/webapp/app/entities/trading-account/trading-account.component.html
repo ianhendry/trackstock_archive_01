@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.tradingAccount.home.title">Trading Accounts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-trading-account" [routerLink]="['/trading-account/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.tradingAccount.home.createLabel">
+            Create new Trading Account
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="tradingAccounts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.accountName">Account Name</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.accountReal">Account Real</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.accountOpenDate">Account Open Date</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.accountBalance">Account Balance</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.accountCloseDate">Account Close Date</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.position">Position</span></th>
+            <th><span jhiTranslate="trackstockApp.tradingAccount.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tradingAccount of tradingAccounts ;trackBy: trackId">
+                <td><a [routerLink]="['/trading-account', tradingAccount.id, 'view' ]">{{tradingAccount.id}}</a></td>
+                <td>{{tradingAccount.accountName}}</td>
+                <td>{{tradingAccount.accountReal}}</td>
+                <td>{{tradingAccount.accountOpenDate | date:'mediumDate'}}</td>
+                <td>{{tradingAccount.accountBalance}}</td>
+                <td>{{tradingAccount.accountCloseDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="tradingAccount.position">
+                        <a [routerLink]="['../position', tradingAccount.position?.id, 'view' ]" >{{tradingAccount.position?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{tradingAccount.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/trading-account', tradingAccount.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/trading-account', tradingAccount.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'trading-account', { outlets: { popup: tradingAccount.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

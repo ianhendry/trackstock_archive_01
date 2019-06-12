@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="post">
+            <h2><span jhiTranslate="trackstockApp.post.detail.title">Post</span> {{post.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.post.postTitle">Post Title</span></dt>
+                <dd>
+                    <span>{{post.postTitle}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.postBody">Post Body</span></dt>
+                <dd>
+                    <span>{{post.postBody}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{post.dateAdded}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.dateApproved">Date Approved</span></dt>
+                <dd>
+                    <span>{{post.dateApproved}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.media1">Media 1</span></dt>
+                <dd>
+                    <div *ngIf="post.media1">
+                        <a (click)="openFile(post.media1ContentType, post.media1)">
+                            <img [src]="'data:' + post.media1ContentType + ';base64,' + post.media1" style="max-width: 100%;" alt="post image"/>
+                        </a>
+                        {{post.media1ContentType}}, {{byteSize(post.media1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.media2">Media 2</span></dt>
+                <dd>
+                    <div *ngIf="post.media2">
+                        <a (click)="openFile(post.media2ContentType, post.media2)">
+                            <img [src]="'data:' + post.media2ContentType + ';base64,' + post.media2" style="max-width: 100%;" alt="post image"/>
+                        </a>
+                        {{post.media2ContentType}}, {{byteSize(post.media2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.media3">Media 3</span></dt>
+                <dd>
+                    <div *ngIf="post.media3">
+                        <a (click)="openFile(post.media3ContentType, post.media3)">
+                            <img [src]="'data:' + post.media3ContentType + ';base64,' + post.media3" style="max-width: 100%;" alt="post image"/>
+                        </a>
+                        {{post.media3ContentType}}, {{byteSize(post.media3)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.media4">Media 4</span></dt>
+                <dd>
+                    <div *ngIf="post.media4">
+                        <a (click)="openFile(post.media4ContentType, post.media4)">
+                            <img [src]="'data:' + post.media4ContentType + ';base64,' + post.media4" style="max-width: 100%;" alt="post image"/>
+                        </a>
+                        {{post.media4ContentType}}, {{byteSize(post.media4)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.instrument">Instrument</span></dt>
+                <dd>
+                    <div *ngIf="post.instrument">
+                        <a [routerLink]="['/instrument', post.instrument?.id, 'view']">{{post.instrument?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.comment">Comment</span></dt>
+                <dd>
+                    <div *ngIf="post.comment">
+                        <a [routerLink]="['/comment', post.comment?.id, 'view']">{{post.comment?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.post.user">User</span></dt>
+                <dd>
+                    {{post.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/post', post.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

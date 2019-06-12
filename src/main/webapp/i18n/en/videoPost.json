@@ -1,0 +1,26 @@
+{
+  "trackstockApp": {
+    "videoPost": {
+      "home": {
+        "title": "Video Posts",
+        "createLabel": "Create a new Video Post",
+        "createOrEditLabel": "Create or edit a Video Post"
+      },
+      "created": "A new Video Post is created with identifier {{ param }}",
+      "updated": "A Video Post is updated with identifier {{ param }}",
+      "deleted": "A Video Post is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Video Post {{ id }}?"
+      },
+      "detail": {
+        "title": "Video Post"
+      },
+      "postTitle": "Post Title",
+      "postBody": "Post Body",
+      "dateAdded": "Date Added",
+      "dateApproved": "Date Approved",
+      "media1": "Media 1",
+      "user": "User"
+    }
+  }
+}

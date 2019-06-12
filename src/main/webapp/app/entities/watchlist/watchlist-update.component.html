@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-watchlist-heading" jhiTranslate="trackstockApp.watchlist.home.createOrEditLabel">Create or edit a Watchlist</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!watchlist.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.watchlist.watchlistName" for="field_watchlistName">Watchlist Name</label>
+                    <input type="text" class="form-control" name="watchlistName" id="field_watchlistName"
+                           formControlName="watchlistName"/>
+                    <div *ngIf="editForm.get('watchlistName').invalid && (editForm.get('watchlistName').dirty || editForm.get('watchlistName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('watchlistName').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.watchlist.watchlistDescription" for="field_watchlistDescription">Watchlist Description</label>
+                    <input type="text" class="form-control" name="watchlistDescription" id="field_watchlistDescription"
+                           formControlName="watchlistDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.watchlist.dateCreated" for="field_dateCreated">Date Created</label>
+                    <div class="input-group">
+                        <input id="field_dateCreated" type="text" class="form-control" name="dateCreated" ngbDatepicker  #dateCreatedDp="ngbDatepicker" formControlName="dateCreated"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateCreatedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateCreated').invalid && (editForm.get('dateCreated').dirty || editForm.get('dateCreated').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateCreated').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.watchlist.dateInactive" for="field_dateInactive">Date Inactive</label>
+                    <div class="input-group">
+                        <input id="field_dateInactive" type="text" class="form-control" name="dateInactive" ngbDatepicker  #dateInactiveDp="ngbDatepicker" formControlName="dateInactive"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateInactiveDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.watchlist.watchlistInactive" for="field_watchlistInactive">Watchlist Inactive</label>
+                    <input type="checkbox" class="form-control" name="watchlistInactive" id="field_watchlistInactive"
+                           formControlName="watchlistInactive"/>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="trackstockApp.watchlist.instrument" for="field_instruments">Instrument</label>
+                    <select class="form-control" id="field_instruments" multiple name="instruments" formControlName="instruments">
+                        <option [ngValue]="getSelected(editForm.get('instruments').value, instrumentOption)" *ngFor="let instrumentOption of instruments; trackBy: trackInstrumentById">{{instrumentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

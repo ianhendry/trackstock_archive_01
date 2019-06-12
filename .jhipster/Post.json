@@ -1,0 +1,81 @@
+{
+    "name": "Post",
+    "fields": [
+        {
+            "fieldName": "postTitle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "postBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateAdded",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateApproved",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "media1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "media2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "media3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "media4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "instrument",
+            "otherEntityRelationshipName": "post",
+            "relationshipName": "instrument",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "comment",
+            "otherEntityRelationshipName": "post",
+            "relationshipName": "comment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "post",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "changelogDate": "20190606124920",
+    "entityTableName": "post",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

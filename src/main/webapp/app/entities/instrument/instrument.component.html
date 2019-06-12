@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.instrument.home.title">Instruments</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-instrument" [routerLink]="['/instrument/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.instrument.home.createLabel">
+            Create new Instrument
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="instruments">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dataProvider"><span jhiTranslate="trackstockApp.instrument.dataProvider">Data Provider</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrumentTicker"><span jhiTranslate="trackstockApp.instrument.instrumentTicker">Instrument Ticker</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrumentExchnage"><span jhiTranslate="trackstockApp.instrument.instrumentExchnage">Instrument Exchnage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrumentDescription"><span jhiTranslate="trackstockApp.instrument.instrumentDescription">Instrument Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrumentDataFrom"><span jhiTranslate="trackstockApp.instrument.instrumentDataFrom">Instrument Data From</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="instrumentActive"><span jhiTranslate="trackstockApp.instrument.instrumentActive">Instrument Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateAdded"><span jhiTranslate="trackstockApp.instrument.dateAdded">Date Added</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateInactive"><span jhiTranslate="trackstockApp.instrument.dateInactive">Date Inactive</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let instrument of instruments ;trackBy: trackId">
+                <td><a [routerLink]="['/instrument', instrument.id, 'view' ]">{{instrument.id}}</a></td>
+                <td jhiTranslate="{{'trackstockApp.FinancialDataSources.' + instrument.dataProvider}}">{{instrument.dataProvider}}</td>
+                <td>{{instrument.instrumentTicker}}</td>
+                <td>{{instrument.instrumentExchnage}}</td>
+                <td>{{instrument.instrumentDescription}}</td>
+                <td>{{instrument.instrumentDataFrom}}</td>
+                <td>{{instrument.instrumentActive}}</td>
+                <td>{{instrument.dateAdded | date:'mediumDate'}}</td>
+                <td>{{instrument.dateInactive | date:'mediumDate'}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/instrument', instrument.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/instrument', instrument.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'instrument', { outlets: { popup: instrument.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="instruments && instruments.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

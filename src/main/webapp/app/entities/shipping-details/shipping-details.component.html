@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="trackstockApp.shippingDetails.home.title">Shipping Details</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-shipping-details" [routerLink]="['/shipping-details/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="trackstockApp.shippingDetails.home.createLabel">
+            Create new Shipping Details
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="shippingDetails">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.userName">User Name</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.email">Email</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.name">Name</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.address1">Address 1</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.address2">Address 2</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.address3">Address 3</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.address4">Address 4</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.address5">Address 5</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.dateAdded">Date Added</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.dateInactive">Date Inactive</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.userPicture">User Picture</span></th>
+            <th><span jhiTranslate="trackstockApp.shippingDetails.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let shippingDetails of shippingDetails ;trackBy: trackId">
+                <td><a [routerLink]="['/shipping-details', shippingDetails.id, 'view' ]">{{shippingDetails.id}}</a></td>
+                <td>{{shippingDetails.userName}}</td>
+                <td>{{shippingDetails.email}}</td>
+                <td>{{shippingDetails.name}}</td>
+                <td>{{shippingDetails.address1}}</td>
+                <td>{{shippingDetails.address2}}</td>
+                <td>{{shippingDetails.address3}}</td>
+                <td>{{shippingDetails.address4}}</td>
+                <td>{{shippingDetails.address5}}</td>
+                <td>{{shippingDetails.dateAdded | date:'mediumDate'}}</td>
+                <td>{{shippingDetails.dateInactive | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="shippingDetails.userPicture" (click)="openFile(shippingDetails.userPictureContentType, shippingDetails.userPicture)">
+                        <img [src]="'data:' + shippingDetails.userPictureContentType + ';base64,' + shippingDetails.userPicture" style="max-height: 30px;" alt="shippingDetails image"/>
+                    </a>
+                    <span *ngIf="shippingDetails.userPicture">{{shippingDetails.userPictureContentType}}, {{byteSize(shippingDetails.userPicture)}}</span>
+                </td>
+                <td>
+                    {{shippingDetails.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/shipping-details', shippingDetails.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/shipping-details', shippingDetails.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'shipping-details', { outlets: { popup: shippingDetails.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "trackstockApp": {
+    "post": {
+      "home": {
+        "title": "Posts",
+        "createLabel": "创建新 Post",
+        "createOrEditLabel": "创建或编辑 Post"
+      },
+      "created": "Post {{ param }} 创建成功",
+      "updated": "Post {{ param }} 更新成功",
+      "deleted": "Post {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Post {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Post"
+      },
+      "postTitle": "Post Title",
+      "postBody": "Post Body",
+      "dateAdded": "Date Added",
+      "dateApproved": "Date Approved",
+      "media1": "Media 1",
+      "media2": "Media 2",
+      "media3": "Media 3",
+      "media4": "Media 4",
+      "instrument": "Instrument",
+      "comment": "Comment",
+      "user": "User"
+    }
+  }
+}

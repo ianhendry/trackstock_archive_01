@@ -1,0 +1,50 @@
+{
+    "name": "VideoPost",
+    "fields": [
+        {
+            "fieldName": "postTitle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "postBody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateAdded",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateApproved",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "media1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "videoPost",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "changelogDate": "20190606124921",
+    "entityTableName": "video_post",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

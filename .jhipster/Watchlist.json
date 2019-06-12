@@ -1,0 +1,56 @@
+{
+    "name": "Watchlist",
+    "fields": [
+        {
+            "fieldName": "watchlistName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "watchlistDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateCreated",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateInactive",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "watchlistInactive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "comment",
+            "otherEntityRelationshipName": "watchlist",
+            "relationshipName": "comment"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "instrument",
+            "otherEntityRelationshipName": "watchlist",
+            "relationshipName": "instrument",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190606124923",
+    "entityTableName": "watchlist",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

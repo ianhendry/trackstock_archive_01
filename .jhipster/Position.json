@@ -1,0 +1,72 @@
+{
+    "name": "Position",
+    "fields": [
+        {
+            "fieldName": "positionTradePlan",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "positionOpenDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "positionOpenPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "positionCloseDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "positionClosePrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "positioWinLoss",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "positionProfitAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "positionClosingThought",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "instrument",
+            "otherEntityRelationshipName": "position",
+            "relationshipName": "instrument",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "tradingAccount",
+            "otherEntityRelationshipName": "position",
+            "relationshipName": "tradingAccount",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190606124925",
+    "entityTableName": "position",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

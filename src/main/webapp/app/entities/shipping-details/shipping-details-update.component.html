@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-shipping-details-heading" jhiTranslate="trackstockApp.shippingDetails.home.createOrEditLabel">Create or edit a Shipping Details</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!shippingDetails.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.userName" for="field_userName">User Name</label>
+                    <input type="text" class="form-control" name="userName" id="field_userName"
+                           formControlName="userName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.address1" for="field_address1">Address 1</label>
+                    <input type="text" class="form-control" name="address1" id="field_address1"
+                           formControlName="address1"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.address2" for="field_address2">Address 2</label>
+                    <input type="text" class="form-control" name="address2" id="field_address2"
+                           formControlName="address2"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.address3" for="field_address3">Address 3</label>
+                    <input type="text" class="form-control" name="address3" id="field_address3"
+                           formControlName="address3"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.address4" for="field_address4">Address 4</label>
+                    <input type="text" class="form-control" name="address4" id="field_address4"
+                           formControlName="address4"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.address5" for="field_address5">Address 5</label>
+                    <input type="text" class="form-control" name="address5" id="field_address5"
+                           formControlName="address5"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker  #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.dateInactive" for="field_dateInactive">Date Inactive</label>
+                    <div class="input-group">
+                        <input id="field_dateInactive" type="text" class="form-control" name="dateInactive" ngbDatepicker  #dateInactiveDp="ngbDatepicker" formControlName="dateInactive"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateInactiveDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.userPicture" for="field_userPicture">User Picture</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('userPictureContentType').value + ';base64,' + editForm.get('userPicture').value" style="max-height: 100px;" *ngIf="editForm.get('userPicture').value" alt="shippingDetails image"/>
+                        <div *ngIf="editForm.get('userPicture').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('userPictureContentType').value}}, {{byteSize(editForm.get('userPicture').value)}}</span>
+                            <button type="button" (click)="clearInputImage('userPicture', 'userPictureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_userPicture" (change)="setFileData($event, 'userPicture', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="userPicture" id="field_userPicture"
+                           formControlName="userPicture"/>
+                    <input type="hidden" class="form-control" name="userPictureContentType" id="field_userPictureContentType"
+                           formControlName="userPictureContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.shippingDetails.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

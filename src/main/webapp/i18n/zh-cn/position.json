@@ -1,0 +1,30 @@
+{
+  "trackstockApp": {
+    "position": {
+      "home": {
+        "title": "Positions",
+        "createLabel": "创建新 Position",
+        "createOrEditLabel": "创建或编辑 Position"
+      },
+      "created": "Position {{ param }} 创建成功",
+      "updated": "Position {{ param }} 更新成功",
+      "deleted": "Position {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Position {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Position"
+      },
+      "positionTradePlan": "Position Trade Plan",
+      "positionOpenDate": "Position Open Date",
+      "positionOpenPrice": "Position Open Price",
+      "positionCloseDate": "Position Close Date",
+      "positionClosePrice": "Position Close Price",
+      "positioWinLoss": "Positio Win Loss",
+      "positionProfitAmount": "Position Profit Amount",
+      "positionClosingThought": "Position Closing Thought",
+      "instrument": "Instrument",
+      "tradingAccount": "Trading Account"
+    }
+  }
+}

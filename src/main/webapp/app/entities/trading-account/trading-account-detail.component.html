@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tradingAccount">
+            <h2><span jhiTranslate="trackstockApp.tradingAccount.detail.title">Trading Account</span> {{tradingAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.accountName">Account Name</span></dt>
+                <dd>
+                    <span>{{tradingAccount.accountName}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.accountReal">Account Real</span></dt>
+                <dd>
+                    <span>{{tradingAccount.accountReal}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.accountOpenDate">Account Open Date</span></dt>
+                <dd>
+                    <span>{{tradingAccount.accountOpenDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.accountBalance">Account Balance</span></dt>
+                <dd>
+                    <span>{{tradingAccount.accountBalance}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.accountCloseDate">Account Close Date</span></dt>
+                <dd>
+                    <span>{{tradingAccount.accountCloseDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.position">Position</span></dt>
+                <dd>
+                    <div *ngIf="tradingAccount.position">
+                        <a [routerLink]="['/position', tradingAccount.position?.id, 'view']">{{tradingAccount.position?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="trackstockApp.tradingAccount.user">User</span></dt>
+                <dd>
+                    {{tradingAccount.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/trading-account', tradingAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

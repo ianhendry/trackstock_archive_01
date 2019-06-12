@@ -1,0 +1,31 @@
+{
+  "trackstockApp": {
+    "post": {
+      "home": {
+        "title": "Posts",
+        "createLabel": "Créer un nouveau Post",
+        "createOrEditLabel": "Créer ou éditer un Post"
+      },
+      "created": "Un nouveau Post a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Post avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Post avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Post {{ id }} ?"
+      },
+      "detail": {
+        "title": "Post"
+      },
+      "postTitle": "Post Title",
+      "postBody": "Post Body",
+      "dateAdded": "Date Added",
+      "dateApproved": "Date Approved",
+      "media1": "Media 1",
+      "media2": "Media 2",
+      "media3": "Media 3",
+      "media4": "Media 4",
+      "instrument": "Instrument",
+      "comment": "Comment",
+      "user": "User"
+    }
+  }
+}

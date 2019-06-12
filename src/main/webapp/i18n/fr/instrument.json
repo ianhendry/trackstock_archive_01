@@ -1,0 +1,31 @@
+{
+  "trackstockApp": {
+    "instrument": {
+      "home": {
+        "title": "Instruments",
+        "createLabel": "Créer un nouveau Instrument",
+        "createOrEditLabel": "Créer ou éditer un Instrument"
+      },
+      "created": "Un nouveau Instrument a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Instrument avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Instrument avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Instrument {{ id }} ?"
+      },
+      "detail": {
+        "title": "Instrument"
+      },
+      "dataProvider": "Data Provider",
+      "instrumentTicker": "Instrument Ticker",
+      "instrumentExchnage": "Instrument Exchnage",
+      "instrumentDescription": "Instrument Description",
+      "instrumentDataFrom": "Instrument Data From",
+      "instrumentActive": "Instrument Active",
+      "dateAdded": "Date Added",
+      "dateInactive": "Date Inactive",
+      "position": "Position",
+      "post": "Post",
+      "watchlist": "Watchlist"
+    }
+  }
+}
