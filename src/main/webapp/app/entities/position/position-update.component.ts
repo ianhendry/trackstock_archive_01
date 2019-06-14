@@ -37,7 +37,8 @@ export class PositionUpdateComponent implements OnInit {
     positioWinLoss: [],
     positionProfitAmount: [],
     positionClosingThought: [],
-    instrument: []
+    instrument: [],
+    tradingAccount: []
   });
 
   constructor(
@@ -100,7 +101,8 @@ export class PositionUpdateComponent implements OnInit {
       positioWinLoss: position.positioWinLoss,
       positionProfitAmount: position.positionProfitAmount,
       positionClosingThought: position.positionClosingThought,
-      instrument: position.instrument
+      instrument: position.instrument,
+      tradingAccount: position.tradingAccount
     });
   }
 
@@ -130,7 +132,8 @@ export class PositionUpdateComponent implements OnInit {
       positioWinLoss: this.editForm.get(['positioWinLoss']).value,
       positionProfitAmount: this.editForm.get(['positionProfitAmount']).value,
       positionClosingThought: this.editForm.get(['positionClosingThought']).value,
-      instrument: this.editForm.get(['instrument']).value
+      instrument: this.editForm.get(['instrument']).value,
+      tradingAccount: this.editForm.get(['tradingAccount']).value
     };
     return entity;
   }

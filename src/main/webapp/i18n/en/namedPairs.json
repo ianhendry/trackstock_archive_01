@@ -1,0 +1,24 @@
+{
+  "trackstockApp": {
+    "namedPairs": {
+      "home": {
+        "title": "Named Pairs",
+        "createLabel": "Create a new Named Pairs",
+        "createOrEditLabel": "Create or edit a Named Pairs"
+      },
+      "created": "A new Named Pairs is created with identifier {{ param }}",
+      "updated": "A Named Pairs is updated with identifier {{ param }}",
+      "deleted": "A Named Pairs is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Named Pairs {{ id }}?"
+      },
+      "detail": {
+        "title": "Named Pairs"
+      },
+      "groupName": "Group Name",
+      "key": "Key",
+      "value": "Value",
+      "user": "User"
+    }
+  }
+}

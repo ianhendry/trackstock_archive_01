@@ -25,12 +25,6 @@
                 <dd>
                     <span>{{tradingAccount.accountCloseDate}}</span>
                 </dd>
-                <dt><span jhiTranslate="trackstockApp.tradingAccount.position">Position</span></dt>
-                <dd>
-                    <div *ngIf="tradingAccount.position">
-                        <a [routerLink]="['/position', tradingAccount.position?.id, 'view']">{{tradingAccount.position?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="trackstockApp.tradingAccount.user">User</span></dt>
                 <dd>
                     {{tradingAccount.user?.login}}

@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="instrument"/>
 
+        <addForeignKeyConstraint baseColumnNames="trading_account_id"
+                                 baseTableName="position"
+                                 constraintName="fk_position_trading_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trading_account"/>
+
     </changeSet>
 </databaseChangeLog>

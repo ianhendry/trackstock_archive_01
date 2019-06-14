@@ -1,0 +1,64 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="idcmih (generated)" id="1560418046776-7">
+        <createTable tableName="named_pairs">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="named_pairsPK"/>
+            </column>
+            <column name="group_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jhi_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jhi_value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-8">
+        <addColumn tableName="position">
+            <column name="trading_account_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-9">
+        <addForeignKeyConstraint baseColumnNames="trading_account_id" baseTableName="position" constraintName="FKdx8w690avoboyohvrsmh0grf1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trading_account" validate="true"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-10">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="named_pairs" constraintName="FKfwqw4qdidky0tp9i8jkapd8n9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-11">
+        <dropForeignKeyConstraint baseTableName="trading_account" constraintName="fk_trading_account_position_id"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-12">
+        <dropUniqueConstraint constraintName="ux_trading_account_position_id" tableName="trading_account"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-13">
+        <dropColumn columnName="position_id" tableName="trading_account"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-1">
+        <dropUniqueConstraint constraintName="UC_COMMENTREPLY_ID_COL" tableName="comment"/>
+        <addUniqueConstraint columnNames="reply_id" constraintName="UC_COMMENTREPLY_ID_COL" tableName="comment"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-3">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-4">
+        <dropUniqueConstraint constraintName="UC_POSITIONINSTRUMENT_ID_COL" tableName="position"/>
+        <addUniqueConstraint columnNames="instrument_id" constraintName="UC_POSITIONINSTRUMENT_ID_COL" tableName="position"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-5">
+        <dropUniqueConstraint constraintName="UC_POSTCOMMENT_ID_COL" tableName="post"/>
+        <addUniqueConstraint columnNames="comment_id" constraintName="UC_POSTCOMMENT_ID_COL" tableName="post"/>
+    </changeSet>
+    <changeSet author="idcmih (generated)" id="1560418046776-6">
+        <dropUniqueConstraint constraintName="UC_POSTINSTRUMENT_ID_COL" tableName="post"/>
+        <addUniqueConstraint columnNames="instrument_id" constraintName="UC_POSTINSTRUMENT_ID_COL" tableName="post"/>
+    </changeSet>
+</databaseChangeLog>

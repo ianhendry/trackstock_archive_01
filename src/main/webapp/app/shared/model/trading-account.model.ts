@@ -9,7 +9,7 @@ export interface ITradingAccount {
   accountOpenDate?: Moment;
   accountBalance?: number;
   accountCloseDate?: Moment;
-  position?: IPosition;
+  positions?: IPosition[];
   user?: IUser;
 }
 
@@ -21,7 +21,7 @@ export class TradingAccount implements ITradingAccount {
     public accountOpenDate?: Moment,
     public accountBalance?: number,
     public accountCloseDate?: Moment,
-    public position?: IPosition,
+    public positions?: IPosition[],
     public user?: IUser
   ) {
     this.accountReal = this.accountReal || false;

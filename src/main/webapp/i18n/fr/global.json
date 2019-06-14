@@ -15,6 +15,7 @@
         "watchlist": "Watchlist",
         "instrument": "Instrument",
         "position": "Position",
+        "namedPairs": "Named Pairs",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

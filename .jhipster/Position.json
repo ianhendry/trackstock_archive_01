@@ -53,11 +53,11 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityName": "tradingAccount",
             "otherEntityRelationshipName": "position",
             "relationshipName": "tradingAccount",
-            "ownerSide": false
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190606124925",

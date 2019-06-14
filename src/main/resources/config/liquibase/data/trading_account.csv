@@ -1,11 +1,11 @@
 id;account_name;account_real;account_open_date;account_balance;account_close_date
-1;Money Market Account;true;2019-06-05T14:00:23;18343;2019-06-05T19:15:20
-2;Auto Loan Account;true;2019-06-05T22:29:57;15601;2019-06-06T02:07:24
-3;Savings Account;false;2019-06-06T11:25:45;45924;2019-06-05T16:02:07
-4;Money Market Account;true;2019-06-06T09:23:40;70807;2019-06-05T21:12:08
-5;Checking Account;false;2019-06-05T13:32:45;72199;2019-06-05T16:50:42
-6;Personal Loan Account;false;2019-06-06T12:48:17;18182;2019-06-05T13:00:38
-7;Savings Account;true;2019-06-06T05:31:18;61165;2019-06-06T00:13:45
-8;Checking Account;false;2019-06-06T12:16:11;29122;2019-06-06T00:13:44
-9;Home Loan Account;false;2019-06-06T09:28:32;4666;2019-06-06T05:48:43
-10;Personal Loan Account;false;2019-06-06T07:14:13;45606;2019-06-06T10:38:56
+1;Money Market Account;true;2019-06-11T09:29:04;18343;2019-06-11T14:44:01
+2;Auto Loan Account;true;2019-06-11T17:58:37;15601;2019-06-11T21:36:05
+3;Savings Account;false;2019-06-12T06:54:26;45924;2019-06-11T11:30:48
+4;Money Market Account;true;2019-06-12T04:52:21;70807;2019-06-11T16:40:48
+5;Checking Account;false;2019-06-11T09:01:25;72199;2019-06-11T12:19:22
+6;Personal Loan Account;false;2019-06-12T08:16:57;18182;2019-06-11T08:29:18
+7;Savings Account;true;2019-06-12T00:59:58;61165;2019-06-11T19:42:26
+8;Checking Account;false;2019-06-12T07:44:52;29122;2019-06-11T19:42:24
+9;Home Loan Account;false;2019-06-12T04:57:12;4666;2019-06-12T01:17:23
+10;Personal Loan Account;false;2019-06-12T02:42:53;45606;2019-06-12T06:07:36

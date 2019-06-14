@@ -8,8 +8,6 @@ import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 import { ITradingAccount, TradingAccount } from 'app/shared/model/trading-account.model';
 import { TradingAccountService } from './trading-account.service';
-import { IPosition } from 'app/shared/model/position.model';
-import { PositionService } from 'app/entities/position';
 import { IUser, UserService } from 'app/core';
 
 @Component({
@@ -19,8 +17,6 @@ import { IUser, UserService } from 'app/core';
 export class TradingAccountUpdateComponent implements OnInit {
   tradingAccount: ITradingAccount;
   isSaving: boolean;
-
-  positions: IPosition[];
 
   users: IUser[];
   accountOpenDateDp: any;
@@ -33,14 +29,12 @@ export class TradingAccountUpdateComponent implements OnInit {
     accountOpenDate: [null, [Validators.required]],
     accountBalance: [null, [Validators.required]],
     accountCloseDate: [],
-    position: [],
     user: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected tradingAccountService: TradingAccountService,
-    protected positionService: PositionService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -52,31 +46,6 @@ export class TradingAccountUpdateComponent implements OnInit {
       this.updateForm(tradingAccount);
       this.tradingAccount = tradingAccount;
     });
-    this.positionService
-      .query({ filter: 'tradingaccount-is-null' })
-      .pipe(
-        filter((mayBeOk: HttpResponse<IPosition[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IPosition[]>) => response.body)
-      )
-      .subscribe(
-        (res: IPosition[]) => {
-          if (!this.tradingAccount.position || !this.tradingAccount.position.id) {
-            this.positions = res;
-          } else {
-            this.positionService
-              .find(this.tradingAccount.position.id)
-              .pipe(
-                filter((subResMayBeOk: HttpResponse<IPosition>) => subResMayBeOk.ok),
-                map((subResponse: HttpResponse<IPosition>) => subResponse.body)
-              )
-              .subscribe(
-                (subRes: IPosition) => (this.positions = [subRes].concat(res)),
-                (subRes: HttpErrorResponse) => this.onError(subRes.message)
-              );
-          }
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
     this.userService
       .query()
       .pipe(
@@ -94,7 +63,6 @@ export class TradingAccountUpdateComponent implements OnInit {
       accountOpenDate: tradingAccount.accountOpenDate,
       accountBalance: tradingAccount.accountBalance,
       accountCloseDate: tradingAccount.accountCloseDate,
-      position: tradingAccount.position,
       user: tradingAccount.user
     });
   }
@@ -122,7 +90,6 @@ export class TradingAccountUpdateComponent implements OnInit {
       accountOpenDate: this.editForm.get(['accountOpenDate']).value,
       accountBalance: this.editForm.get(['accountBalance']).value,
       accountCloseDate: this.editForm.get(['accountCloseDate']).value,
-      position: this.editForm.get(['position']).value,
       user: this.editForm.get(['user']).value
     };
     return entity;
@@ -142,10 +109,6 @@ export class TradingAccountUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackPositionById(index: number, item: IPosition) {
-    return item.id;
   }
 
   trackUserById(index: number, item: IUser) {

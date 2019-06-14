@@ -1,0 +1,24 @@
+{
+  "trackstockApp": {
+    "namedPairs": {
+      "home": {
+        "title": "Named Pairs",
+        "createLabel": "创建新 Named Pairs",
+        "createOrEditLabel": "创建或编辑 Named Pairs"
+      },
+      "created": "Named Pairs {{ param }} 创建成功",
+      "updated": "Named Pairs {{ param }} 更新成功",
+      "deleted": "Named Pairs {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Named Pairs {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Named Pairs"
+      },
+      "groupName": "Group Name",
+      "key": "Key",
+      "value": "Value",
+      "user": "User"
+    }
+  }
+}

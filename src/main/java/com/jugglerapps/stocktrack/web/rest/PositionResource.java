@@ -25,7 +25,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.jugglerapps.stocktrack.domain.Position}.
@@ -91,16 +90,10 @@ public class PositionResource {
      * {@code GET  /positions} : get all the positions.
      *
      * @param pageable the pagination information.
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of positions in body.
      */
     @GetMapping("/positions")
-    public ResponseEntity<List<Position>> getAllPositions(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder, @RequestParam(required = false) String filter) {
-        if ("tradingaccount-is-null".equals(filter)) {
-            log.debug("REST request to get all Positions where tradingAccount is null");
-            return new ResponseEntity<>(positionService.findAllWhereTradingAccountIsNull(),
-                    HttpStatus.OK);
-        }
+    public ResponseEntity<List<Position>> getAllPositions(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Positions");
         Page<Position> page = positionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);

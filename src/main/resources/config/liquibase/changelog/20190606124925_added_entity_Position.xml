@@ -50,6 +50,10 @@
             <column name="instrument_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_position_instrument_id" />
             </column>
+            <column name="trading_account_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 

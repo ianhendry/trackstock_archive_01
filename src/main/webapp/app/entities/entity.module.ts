@@ -35,6 +35,18 @@ import { RouterModule } from '@angular/router';
       {
         path: 'position',
         loadChildren: './position/position.module#TrackstockPositionModule'
+      },
+      {
+        path: 'trading-account',
+        loadChildren: './trading-account/trading-account.module#TrackstockTradingAccountModule'
+      },
+      {
+        path: 'position',
+        loadChildren: './position/position.module#TrackstockPositionModule'
+      },
+      {
+        path: 'named-pairs',
+        loadChildren: './named-pairs/named-pairs.module#TrackstockNamedPairsModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

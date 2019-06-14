@@ -5,7 +5,6 @@ import com.jugglerapps.stocktrack.domain.Position;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,12 +27,6 @@ public interface PositionService {
      * @return the list of entities.
      */
     Page<Position> findAll(Pageable pageable);
-    /**
-     * Get all the PositionDTO where TradingAccount is {@code null}.
-     *
-     * @return the list of entities.
-     */
-    List<Position> findAllWhereTradingAccountIsNull();
 
 
     /**

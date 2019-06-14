@@ -87,6 +87,13 @@
                         <option [ngValue]="instrumentOption.id === editForm.get('instrument').value?.id ? editForm.get('instrument').value : instrumentOption" *ngFor="let instrumentOption of instruments; trackBy: trackInstrumentById">{{instrumentOption.id}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="trackstockApp.position.tradingAccount" for="field_tradingAccount">Trading Account</label>
+                    <select class="form-control" id="field_tradingAccount" name="tradingAccount" formControlName="tradingAccount">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tradingAccountOption.id === editForm.get('tradingAccount').value?.id ? editForm.get('tradingAccount').value : tradingAccountOption" *ngFor="let tradingAccountOption of tradingaccounts; trackBy: trackTradingAccountById">{{tradingAccountOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

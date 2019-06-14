@@ -24,6 +24,7 @@
             <th jhiSortBy="positionProfitAmount"><span jhiTranslate="trackstockApp.position.positionProfitAmount">Position Profit Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="positionClosingThought"><span jhiTranslate="trackstockApp.position.positionClosingThought">Position Closing Thought</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="instrument.id"><span jhiTranslate="trackstockApp.position.instrument">Instrument</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tradingAccount.id"><span jhiTranslate="trackstockApp.position.tradingAccount">Trading Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -41,6 +42,11 @@
                 <td>
                     <div *ngIf="position.instrument">
                         <a [routerLink]="['../instrument', position.instrument?.id, 'view' ]" >{{position.instrument?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="position.tradingAccount">
+                        <a [routerLink]="['../trading-account', position.tradingAccount?.id, 'view' ]" >{{position.tradingAccount?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

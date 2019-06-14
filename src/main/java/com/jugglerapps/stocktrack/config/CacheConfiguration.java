@@ -57,6 +57,8 @@ public class CacheConfiguration {
             createCache(cm, com.jugglerapps.stocktrack.domain.Instrument.class.getName());
             createCache(cm, com.jugglerapps.stocktrack.domain.Instrument.class.getName() + ".watchlists");
             createCache(cm, com.jugglerapps.stocktrack.domain.Position.class.getName());
+            createCache(cm, com.jugglerapps.stocktrack.domain.TradingAccount.class.getName() + ".positions");
+            createCache(cm, com.jugglerapps.stocktrack.domain.NamedPairs.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,6 +1,7 @@
 package com.jugglerapps.stocktrack.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -11,6 +12,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -46,9 +49,9 @@ public class TradingAccount implements Serializable {
     @Column(name = "account_close_date")
     private LocalDate accountCloseDate;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Position position;
+    @OneToMany(mappedBy = "tradingAccount")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Position> positions = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("tradingAccounts")
@@ -128,17 +131,29 @@ public class TradingAccount implements Serializable {
         this.accountCloseDate = accountCloseDate;
     }
 
-    public Position getPosition() {
-        return position;
+    public Set<Position> getPositions() {
+        return positions;
     }
 
-    public TradingAccount position(Position position) {
-        this.position = position;
+    public TradingAccount positions(Set<Position> positions) {
+        this.positions = positions;
         return this;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public TradingAccount addPosition(Position position) {
+        this.positions.add(position);
+        position.setTradingAccount(this);
+        return this;
+    }
+
+    public TradingAccount removePosition(Position position) {
+        this.positions.remove(position);
+        position.setTradingAccount(null);
+        return this;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
     }
 
     public User getUser() {

@@ -43,6 +43,12 @@
                         <a [routerLink]="['/instrument', position.instrument?.id, 'view']">{{position.instrument?.id}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="trackstockApp.position.tradingAccount">Trading Account</span></dt>
+                <dd>
+                    <div *ngIf="position.tradingAccount">
+                        <a [routerLink]="['/trading-account', position.tradingAccount?.id, 'view']">{{position.tradingAccount?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
